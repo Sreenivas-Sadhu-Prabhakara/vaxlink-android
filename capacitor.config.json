@@ -1,0 +1,15 @@
+{
+  "appId": "ai.vaxlink.app",
+  "appName": "VaxLink",
+  "webDir": "www",
+  "backgroundColor": "#087676",
+  "server": {
+    "url": "https://vaxlink-ai.web.app",
+    "androidScheme": "https"
+  },
+  "android": {
+    "backgroundColor": "#087676",
+    "appendUserAgent": "VaxLinkAndroid",
+    "allowMixedContent": false
+  }
+}

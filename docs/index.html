@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>VaxLink — install the Android app &amp; project repositories</title>
+<meta name="description" content="Download and sideload the VaxLink workplace-vaccination Android app, and browse every repository in the VaxLink platform." />
+<meta name="theme-color" content="#087676" />
+<meta name="robots" content="noindex" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23087676'/%3E%3Cpath d='M43 26h14v17h17v14H57v17H43V57H26V43h17z' fill='white'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#172f2b; --text:#344b45; --muted:#576c64; --teal:#087676; --teal-dark:#065c5c;
+    --aqua:#08afc0; --mint:#edf8f3; --mint-2:#dcefe4; --line:#dce5e0; --canvas:#f5f8f6; --surface:#fff;
+    --amber:#8a5916; --amber-soft:#fdf3e2; --amber-line:#f2dfb8;
+    --radius:16px; --radius-sm:10px; --shadow:0 14px 40px rgba(22,60,46,.07); --shadow-sm:0 2px 8px rgba(22,60,46,.08);
+    --display:'Manrope',system-ui,sans-serif; --body:'Atkinson Hyperlegible',system-ui,-apple-system,sans-serif;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  body{margin:0;background:var(--canvas);color:var(--ink);font-family:var(--body);line-height:1.55;font-size:16px;
+    padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0)}
+  h1,h2,h3{font-family:var(--display);letter-spacing:-.03em;line-height:1.15;margin:0}
+  h1{font-size:clamp(28px,6vw,46px);font-weight:800}
+  h2{font-size:clamp(20px,3.4vw,26px);font-weight:800;color:var(--ink)}
+  h3{font-size:16px;font-weight:800}
+  p{margin:0 0 14px}
+  a{color:var(--teal-dark)}
+  .wrap{max-width:980px;margin:0 auto;padding:0 20px}
+  .eyebrow{font-family:var(--display);font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--teal)}
+  .muted{color:var(--muted)}
+  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+
+  /* Header / hero */
+  header.hero{background:linear-gradient(170deg,var(--teal) 0%,var(--teal-dark) 100%);color:#eafaf4;
+    padding:calc(40px + env(safe-area-inset-top,0)) 0 48px}
+  header.hero .eyebrow{color:#9fe6d4}
+  .brand{display:inline-flex;align-items:center;gap:12px;margin-bottom:26px}
+  .brand .mark{width:44px;height:44px;border-radius:12px;background:#fff;display:grid;place-items:center;flex:none}
+  .brand .mark svg{width:28px;height:28px}
+  .brand b{font-family:var(--display);font-weight:800;font-size:22px;letter-spacing:-.02em;color:#fff}
+  header.hero h1{color:#fff;max-width:16ch}
+  header.hero p.lede{color:#d7f3ea;font-size:clamp(16px,2.2vw,19px);max-width:56ch;margin-top:14px}
+  .cta-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:28px}
+  .btn{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:14px 24px;border-radius:12px;
+    font-family:var(--display);font-weight:800;font-size:16px;text-decoration:none;border:1px solid transparent;white-space:nowrap}
+  .btn-primary{background:#fff;color:var(--teal-dark)}
+  .btn-primary:hover{background:#eafaf4}
+  .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.4)}
+  .btn-ghost:hover{background:rgba(255,255,255,.12)}
+  .btn svg{width:20px;height:20px;flex:none}
+  .apkmeta{color:#bfe8dc;font-size:13px;margin-top:12px}
+  .apkmeta .mono{color:#eafaf4}
+
+  /* Sections */
+  main{padding:48px 0 16px}
+  section{margin-bottom:52px}
+  .sec-head{margin-bottom:20px}
+  .sec-head p{margin:6px 0 0;max-width:62ch}
+
+  /* Steps */
+  .steps{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .step{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow-sm)}
+  .step .n{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--mint-2);color:var(--teal-dark);
+    font-family:var(--display);font-weight:800;font-size:15px;margin-bottom:10px}
+  .step h3{margin-bottom:4px}
+  .step p{margin:0;font-size:14px;color:var(--text)}
+
+  /* Callout */
+  .note{display:flex;gap:12px;background:var(--mint);border:1px solid var(--mint-2);border-radius:var(--radius);padding:16px 18px}
+  .note.amber{background:var(--amber-soft);border-color:var(--amber-line);color:var(--amber)}
+  .note .ic{flex:none;margin-top:2px}
+  .note p{margin:0 0 6px}.note p:last-child{margin:0}
+  .signin{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:4px}
+  .signin .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-sm);padding:14px 16px}
+  .signin .card b{font-family:var(--display)}
+  .signin .card span{display:block;font-size:13px;color:var(--muted);margin-top:4px}
+
+  /* Repo groups */
+  .grouptitle{display:flex;align-items:baseline;gap:10px;margin:28px 0 12px}
+  .grouptitle .count{font-size:13px;color:var(--muted)}
+  .repos{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .repo{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-sm);padding:14px 16px}
+  .repo .top{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:5px}
+  .repo .name{font-family:var(--display);font-weight:800;font-size:15px;color:var(--ink);word-break:break-word}
+  .repo .lang{font-size:11px;font-weight:700;letter-spacing:.03em;padding:2px 8px;border-radius:999px;background:var(--mint-2);color:var(--teal-dark)}
+  .repo .lang.go{background:#e3f6f9;color:#066c78}.repo .lang.ts{background:#e7eefc;color:#2a4b8d}
+  .repo .lang.hcl{background:#efe7fb;color:#5b3ba6}.repo .lang.android{background:#e4f5ea;color:#1f7a4d}
+  .repo .priv{font-size:11px;font-weight:700;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:1px 7px}
+  .repo p{margin:0;font-size:13.5px;color:var(--text)}
+
+  .endpoints{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .endpoint{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-sm);padding:14px 16px}
+  .endpoint .k{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--teal)}
+  .endpoint a{font-size:14px;word-break:break-all}
+
+  footer{border-top:1px solid var(--line);padding:26px 0 48px;color:var(--muted);font-size:13.5px}
+
+  @media (max-width:720px){
+    .steps,.repos,.endpoints,.signin{grid-template-columns:1fr}
+    .cta-row .btn{flex:1 1 auto;justify-content:center}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="brand">
+      <span class="mark"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M43 26h14v17h17v14H57v17H43V57H26V43h17z" fill="#087676"/></svg></span>
+      <b>VaxLink</b>
+    </div>
+    <p class="eyebrow">Workplace vaccination · Android app</p>
+    <h1>VaxLink workplace vaccination, installable on your Android phone</h1>
+    <p class="lede">Run and join workplace vaccination campaigns end to end — employees sign up with a mobile number, clinicians screen and record each dose, and everyone keeps their own vaccine record. This page installs the app and lists every repository behind the platform.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="./vaxlink.apk" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+        Download VaxLink APK
+      </a>
+      <a class="btn btn-ghost" href="https://vaxlink-ai.web.app" target="_blank" rel="noopener">Open in a browser</a>
+    </div>
+    <p class="apkmeta">Android 5.1+ · <span class="mono">ai.vaxlink.app</span> · v1.0 · ~3.9&nbsp;MB · preview build with synthetic data</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section>
+    <div class="sec-head">
+      <p class="eyebrow">Install in four steps</p>
+      <h2>Sideloading the app</h2>
+      <p class="muted">The app isn’t on the Play Store yet, so you install the APK directly. Do these on the Android phone itself.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><span class="n">1</span><h3>Open this page on your phone</h3><p>Browse to this page in Chrome on the Android device, then tap <b>Download VaxLink APK</b> above.</p></div>
+      <div class="step"><span class="n">2</span><h3>Allow the install</h3><p>Android will ask to allow installs from this source the first time. Tap <b>Settings</b> → turn on <b>Allow from this source</b>, then go back.</p></div>
+      <div class="step"><span class="n">3</span><h3>Install</h3><p>Open the downloaded <span class="mono">vaxlink.apk</span> (from the notification or your Downloads) and tap <b>Install</b>.</p></div>
+      <div class="step"><span class="n">4</span><h3>Launch VaxLink</h3><p>Open the new VaxLink icon. The app loads the live service, so it stays up to date automatically.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <p class="eyebrow">Signing in</p>
+      <h2>How to get in</h2>
+    </div>
+    <div class="signin">
+      <div class="card"><b>Employees</b><span>Sign up with your mobile number — a one-time SMS code. No company email needed.</span></div>
+      <div class="card"><b>HR &amp; clinic teams</b><span>Sign in with your email address and password.</span></div>
+      <div class="card"><b>Google sign-in</b><span>Works only in a normal browser. In the app, use OTP or email + password instead.</span></div>
+    </div>
+    <div class="note amber" style="margin-top:16px">
+      <svg class="ic" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>
+      <div><p><b>Preview build.</b> VaxLink is a preview with synthetic sample data. Please use made-up details — don’t enter real personal or health information.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <p class="eyebrow">Behind the platform</p>
+      <h2>All VaxLink repositories</h2>
+      <p class="muted">Eighteen repositories across the app, the Go microservices and the infrastructure. All are private source; the summaries below describe what each contains.</p>
+    </div>
+
+    <div class="grouptitle"><h3>Apps &amp; frontend</h3><span class="count">3 repos</span></div>
+    <div class="repos">
+      <div class="repo"><div class="top"><span class="name">vaxlink-android</span><span class="lang android">Android · Capacitor</span><span class="priv">public</span></div><p>This repo. A Capacitor wrapper that packages the live web app into an installable Android APK (teal brand, app-aware sign-in) and hosts this install page.</p></div>
+      <div class="repo"><div class="top"><span class="name">vaxlink-mvp1</span><span class="lang ts">TypeScript</span><span class="priv">private</span></div><p>The MVP monorepo and canonical home of the React/Vite web app (<span class="mono">apps/web</span>), the <span class="mono">@vaxlink/ui</span> design system, <span class="mono">@vaxlink/contracts</span>, and the Postgres schema/migrations/seed.</p></div>
+      <div class="repo"><div class="top"><span class="name">vaxlink-web</span><span class="lang ts">TypeScript</span><span class="priv">private</span></div><p>The web app extracted into its own repo — <span class="mono">apps/web</span> plus the <span class="mono">contracts</span> and <span class="mono">ui</span> packages.</p></div>
+    </div>
+
+    <div class="grouptitle"><h3>Backend — Go microservices</h3><span class="count">12 repos</span></div>
+    <div class="repos">
+      <div class="repo"><div class="top"><span class="name">vaxlink-gateway</span><span class="lang go">Go</span><span class="priv">private</span></div><p>The single <span class="mono">/api</span> entry point. Verifies each request’s bearer token (Firebase ID token or custom session), adds security headers, and dispatches to the services.</p></div>
+      <div class="repo"><div class="top"><span class="name">vaxlink-identity</span><span class="lang go">Go</span><span class="priv">private</span></div><p>Authentication and accounts: HR/clinic email+password, employee mobile OTP, sessions, organisations, memberships and roles.</p></div>
+      <div class="repo"><div class="top"><span class="name">vaxlink-campaign</span><span class="lang go">Go</span><span class="priv">private</span></div><p>HR campaigns: create, the public campaign landing page, share links and QR codes, and enrollment.</p></div>
+      <div class="repo"><div class="top"><span class="name">vaxlink-vaxport</span><span class="lang go">Go</span><span class="priv">private</span></div><p>The employee-owned vaccine record (“Vaxport”): health profile and vaccine history, protected by row-level security.</p></div>
+      <div class="repo"><div class="top"><span class="name">vaxlink-screening</span><span class="lang go">Go</span><span class="priv">private</span></div><p>Pre-vaccination screening questionnaires and the clinical flags they raise (row-level-security protected).</p></div>
+      <div class="repo"><div class="top"><span class="name">vaxlink-scheduling</span><span class="lang go">Go</span><span class="priv">private</span></div><p>Slots, bookings, attendance and day-of check-in for each campaign.</p></div>
+      <div class="repo"><div class="top"><span class="name">vaxlink-clinical</span><span class="lang go">Go</span><span class="priv">private</span></div><p>The clinician workflow: patient evaluation, administration records, deferrals, observation and reaction recording, and home-care.</p></div>
+      <div class="repo"><div class="top"><span class="name">vaxlink-certificate</span><span class="lang go">Go</span><span class="priv">private</span></div><p>Issues vaccination certificates and powers the public QR verification page (<span class="mono">/verify/&lt;code&gt;</span>), exposing only the minimum needed to verify.</p></div>
+      <div class="repo"><div class="top"><span class="name">vaxlink-notification</span><span class="lang go">Go</span><span class="priv">private</span></div><p>Outbound messages (OTP codes, appointment reminders). Fails closed in production rather than claiming a message was sent.</p></div>
+      <div class="repo"><div class="top"><span class="name">vaxlink-reporting</span><span class="lang go">Go</span><span class="priv">private</span></div><p>HR funnels and CSV export — participation, schedule, attendance and completion, never the health answers.</p></div>
+      <div class="repo"><div class="top"><span class="name">vaxlink-support</span><span class="lang go">Go</span><span class="priv">private</span></div><p>Support ticketing: raise, assign and resolve tickets with messages and file attachments, with owner-vs-agent access control.</p></div>
+      <div class="repo"><div class="top"><span class="name">vaxlink-audit</span><span class="lang go">Go</span><span class="priv">private</span></div><p>An append-only audit log that records every sensitive action across the platform.</p></div>
+    </div>
+
+    <div class="grouptitle"><h3>Platform, data &amp; infrastructure</h3><span class="count">3 repos</span></div>
+    <div class="repos">
+      <div class="repo"><div class="top"><span class="name">vaxlink-shared</span><span class="lang go">Go</span><span class="priv">private</span></div><p>The shared Go library every service imports: service kit (HTTP, row-level-security transactions, inter-service calls, audit), contracts, DB migrations and the migrate/seed commands.</p></div>
+      <div class="repo"><div class="top"><span class="name">vaxlink-infra</span><span class="lang hcl">OpenTofu</span><span class="priv">private</span></div><p>Infrastructure as code for the live Google Cloud estate — Cloud Run services, Cloud SQL, Artifact Registry, Cloud Storage, Secret Manager and IAM.</p></div>
+      <div class="repo"><div class="top"><span class="name">vaxlink</span><span class="lang">Docs</span><span class="priv">private</span></div><p>The platform architecture and design reference for VaxLink.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <p class="eyebrow">Live</p>
+      <h2>Where it runs</h2>
+    </div>
+    <div class="endpoints">
+      <div class="endpoint"><div class="k">Web app</div><a href="https://vaxlink-ai.web.app" target="_blank" rel="noopener">https://vaxlink-ai.web.app</a></div>
+      <div class="endpoint"><div class="k">API health</div><a href="https://vaxlink-ai.web.app/api/health" target="_blank" rel="noopener">https://vaxlink-ai.web.app/api/health</a></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <p><b>VaxLink</b> — a preview workplace-vaccination platform for the Philippine market. Synthetic data only; the app is not for real personal or health information. The Android app wraps the live web experience, so installing it keeps you on the current release.</p>
+</footer>
+
+</body>
+</html>

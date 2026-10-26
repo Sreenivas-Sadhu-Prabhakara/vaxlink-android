@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">VaxLink</string>
+    <string name="title_activity_main">VaxLink</string>
+    <string name="package_name">ai.vaxlink.app</string>
+    <string name="custom_url_scheme">ai.vaxlink.app</string>
+</resources>
