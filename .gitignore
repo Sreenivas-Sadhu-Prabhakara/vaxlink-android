@@ -8,3 +8,8 @@ android/local.properties
 android/.idea/
 android/app/src/main/assets/public/
 *.keystore
+# TWA signing secrets & local config (never commit)
+**/keystore.properties
+**/local.properties
+*.keystore
+twa/.gradle/

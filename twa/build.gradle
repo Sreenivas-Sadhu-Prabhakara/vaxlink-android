@@ -1,0 +1,21 @@
+// Root build file for the VaxLink TWA. Mirrors the proven Capacitor toolchain (AGP 8.2.1, Gradle 8.2.1).
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.2.1'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

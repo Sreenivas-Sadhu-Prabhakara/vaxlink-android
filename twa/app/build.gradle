@@ -1,0 +1,49 @@
+apply plugin: 'com.android.application'
+
+// Signing credentials come from a gitignored twa/keystore.properties (never committed). Without it,
+// `assembleRelease` produces an unsigned APK — sign it with your own key before distributing.
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def hasRelease = keystorePropertiesFile.exists()
+def keystoreProperties = new Properties()
+if (hasRelease) { keystoreProperties.load(new FileInputStream(keystorePropertiesFile)) }
+
+android {
+    namespace "ai.vaxlink.app"
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "ai.vaxlink.app"
+        minSdk 26
+        targetSdk 34
+        versionCode 2
+        versionName "2.0"
+    }
+
+    signingConfigs {
+        release {
+            if (hasRelease) {
+                storeFile rootProject.file(keystoreProperties['storeFile'])
+                storePassword keystoreProperties['storePassword']
+                keyAlias keystoreProperties['keyAlias']
+                keyPassword keystoreProperties['keyPassword']
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            if (hasRelease) signingConfig signingConfigs.release
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    implementation "androidx.appcompat:appcompat:1.6.1"
+    implementation "com.google.androidbrowserhelper:androidbrowserhelper:2.5.0"
+}

@@ -122,7 +122,7 @@
       </a>
       <a class="btn btn-ghost" href="https://vaxlink-ai.web.app" target="_blank" rel="noopener">Open in a browser</a>
     </div>
-    <p class="apkmeta">Android 5.1+ · <span class="mono">ai.vaxlink.app</span> · v1.0 · ~3.9&nbsp;MB · preview build with synthetic data</p>
+    <p class="apkmeta">Android 8.0+ · <span class="mono">ai.vaxlink.app</span> · v2.0 · ~2.4&nbsp;MB · runs on Chrome (Trusted Web Activity) · preview build with synthetic data</p>
   </div>
 </header>
 
@@ -138,7 +138,11 @@
       <div class="step"><span class="n">1</span><h3>Open this page on your phone</h3><p>Browse to this page in Chrome on the Android device, then tap <b>Download VaxLink APK</b> above.</p></div>
       <div class="step"><span class="n">2</span><h3>Allow the install</h3><p>Android will ask to allow installs from this source the first time. Tap <b>Settings</b> → turn on <b>Allow from this source</b>, then go back.</p></div>
       <div class="step"><span class="n">3</span><h3>Install</h3><p>Open the downloaded <span class="mono">vaxlink.apk</span> (from the notification or your Downloads) and tap <b>Install</b>.</p></div>
-      <div class="step"><span class="n">4</span><h3>Launch VaxLink</h3><p>Open the new VaxLink icon. The app loads the live service, so it stays up to date automatically.</p></div>
+      <div class="step"><span class="n">4</span><h3>Launch VaxLink</h3><p>Open the new VaxLink icon. The app loads the live service in Chrome’s engine, so it stays up to date automatically.</p></div>
+    </div>
+    <div class="note" style="margin-top:16px">
+      <svg class="ic" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 8v4m0 4h.01M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/></svg>
+      <div><p style="margin:0"><b>Installed an earlier version?</b> This release is signed with a new key, so uninstall the old VaxLink app first, then install this one.</p></div>
     </div>
   </section>
 
@@ -150,7 +154,7 @@
     <div class="signin">
       <div class="card"><b>Employees</b><span>Sign up with your mobile number — a one-time SMS code. No company email needed.</span></div>
       <div class="card"><b>HR &amp; clinic teams</b><span>Sign in with your email address and password.</span></div>
-      <div class="card"><b>Google sign-in</b><span>Works only in a normal browser. In the app, use OTP or email + password instead.</span></div>
+      <div class="card"><b>Sign in with Google</b><span>Works in the app too — it runs on Chrome’s engine, so Gmail sign-in is fully supported.</span></div>
     </div>
     <div class="note amber" style="margin-top:16px">
       <svg class="ic" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>
@@ -167,7 +171,7 @@
 
     <div class="grouptitle"><h3>Apps &amp; frontend</h3><span class="count">3 repos</span></div>
     <div class="repos">
-      <div class="repo"><div class="top"><span class="name">vaxlink-android</span><span class="lang android">Android · Capacitor</span><span class="priv">public</span></div><p>This repo. A Capacitor wrapper that packages the live web app into an installable Android APK (teal brand, app-aware sign-in) and hosts this install page.</p></div>
+      <div class="repo"><div class="top"><span class="name">vaxlink-android</span><span class="lang android">Android · TWA</span><span class="priv">public</span></div><p>This repo. An Android app that runs the live web app as a <b>Trusted Web Activity</b> — the real Chrome engine, so Gmail sign-in works — plus the Capacitor build and this install page.</p></div>
       <div class="repo"><div class="top"><span class="name">vaxlink-mvp1</span><span class="lang ts">TypeScript</span><span class="priv">private</span></div><p>The MVP monorepo and canonical home of the React/Vite web app (<span class="mono">apps/web</span>), the <span class="mono">@vaxlink/ui</span> design system, <span class="mono">@vaxlink/contracts</span>, and the Postgres schema/migrations/seed.</p></div>
       <div class="repo"><div class="top"><span class="name">vaxlink-web</span><span class="lang ts">TypeScript</span><span class="priv">private</span></div><p>The web app extracted into its own repo — <span class="mono">apps/web</span> plus the <span class="mono">contracts</span> and <span class="mono">ui</span> packages.</p></div>
     </div>
